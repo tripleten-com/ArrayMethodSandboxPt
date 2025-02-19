@@ -1,5 +1,3 @@
-import { documents } from "./data.js";
-
 // Often in programming we have some code that we want to execute
 // once on each item in a collection of items. For example, we may
 // want to print out the name of each person in a list of people.
@@ -29,9 +27,9 @@ function withForLoop() {
 }
 // withForLoop();
 
-// Finally, let's look in detail at what happens in each step. Uncomment the 
+// Finally, let's look in detail at what happens in each step. Uncomment the
 // function call, run this file in the terminal with `node loops.js`, and
-// obsersve the output.
+// observe the output.
 function withDetailedOutput() {
   for (let i = 0; i < people.length; i++) {
     console.log("i is", i);
@@ -42,4 +40,4 @@ function withDetailedOutput() {
     console.log("end of iteration\n");
   }
 }
-withDetailedOutput();
+// withDetailedOutput();
