@@ -1,33 +1,34 @@
 import { documents } from "./data.js";
 
-// The filter method accepts a callback function like forEach and map, and creates
-// a new array like map.
+// O método filter funciona de forma semelhante ao forEach e ao map: ele também recebe
+// uma função de callback e cria um novo array.
 //
-// But with filter, the callback should return a boolean value. If it returns
-// true the element is included in the new array. Otherwise, it is excluded.
+// Mas no caso do filter, a função de callback deve retornar um valor booleano.
+// Se retornar true, o elemento é incluído no novo array.
+// Caso contrário, ele é excluído.
 
-// Example 1. Obtaining an array containing only the image files.
+// Exemplo 1. Obtendo um array contendo apenas os arquivos de imagem.
 function isImageFile(document) {
   return document.type.startsWith("image/");
 }
 const imageDocuments = documents.filter(isImageFile);
 // console.log(imageDocuments);
 
-// Example 2. We have a file deletion feature. Users select a file to delete, a
-// request is sent to our backend, and the file is deleted from the database. We
-// need to filter out the file that was just deleted, using its ID to identify it.
+// Exemplo 2. Temos um recurso de exclusão de arquivos. O usuário seleciona um arquivo para excluir,
+// uma solicitação é enviada ao nosso backend, e o arquivo é removido do banco de dados.
+// Precisamos filtrar o arquivo que acabou de ser excluído, usando seu ID para identificá-lo.
 function handleFileDeletion(docId, documents) {
   const newDocs = documents.filter(function (document) {
-    return document._id !== docId; // keep all docs except the one that was deleted
+    return document._id !== docId; // mantém todos os documentos, exceto o que foi excluído
   });
   return newDocs;
 }
 const newDocs = handleFileDeletion("507f1f77bcf86cd799439011", documents);
 // console.log(newDocs);
 
-// Example 3. Often, array methods are chained together. For example, imagine we
-// need to filter out all the non-image files, and also convert the dateModified
-// field to a date object.
+// Exemplo 3. Frequentemente, os métodos de array são encadeados.
+// Por exemplo, imagine que precisamos filtrar todos os arquivos de imagem
+// e também converter o campo dateModified para o formato local.
 const imageDocumentsWithLocalDates = documents
   .filter(isImageFile)
   .map(function (document) {

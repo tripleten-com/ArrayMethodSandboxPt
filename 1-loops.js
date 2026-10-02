@@ -1,6 +1,6 @@
-// Often in programming we have some code that we want to execute
-// once on each item in a collection of items. For example, we may
-// want to print out the name of each person in a list of people.
+// Muitas vezes, na programação, temos um trecho de código que queremos executar
+// uma vez para cada item em uma coleção. Por exemplo, podemos querer
+// imprimir o nome de cada pessoa em uma lista de pessoas.
 
 const people = [
   { name: "Alice", age: 25 },
@@ -8,7 +8,7 @@ const people = [
   { name: "Charlie", age: 35 },
 ];
 
-// We could do this without a loop like so:
+// Poderíamos fazer isso sem um loop, dessa forma:
 function withoutForLoop() {
   console.log(people[0].name);
   console.log(people[1].name);
@@ -16,28 +16,28 @@ function withoutForLoop() {
 }
 // withoutForLoop();
 
-// But what if there were 100 people in the list? And more
-// importantly, what if the contents of the list changes?
-// To account for this, we can use a loop.
+// Mas e se houvesse 100 pessoas na lista? E mais:
+// e se o conteúdo da lista mudasse?
+// Para lidar com isso, podemos usar um loop.
 function withForLoop() {
   for (let i = 0; i < people.length; i++) {
-    // We use the variable i to access each item in the array.
+    // Usamos a variável i para acessar cada item no array.
     console.log(people[i].name);
   }
 }
 // withForLoop();
 
-// Finally, let's look in detail at what happens in each step. Uncomment the
-// function call, run this file in the terminal with `node loops.js`, and
-// observe the output.
+// Por fim, vamos analisar em detalhes o que acontece em cada etapa. Descomente a
+// chamada da função, execute este arquivo no terminal com `node loops.js` e
+// observe a saída.
 function withDetailedOutput() {
   for (let i = 0; i < people.length; i++) {
     console.log("i is", i);
     console.log("is i < people.length?", i < people.length);
-    console.log("the body of the loop is executed");
+    console.log("o corpo do loop é executado");
     console.log(people[i].name);
-    console.log("the increment expression is executed");
-    console.log("end of iteration\n");
+    console.log("a expressão de incremento é executada");
+    console.log("fim da iteração\n");
   }
 }
 // withDetailedOutput();

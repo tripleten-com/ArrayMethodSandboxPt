@@ -1,23 +1,24 @@
 import { documents } from "./data.js";
-// The sort method does what you think it does. It sorts the elements in an array. By
-// default, it sorts the elements in ascending order. The callback function is used
-// to determine the order in which the elements are placed. The examples will explain.
+// O método sort ordena os elementos de um array.
+// Por padrão, ordena os elementos em ordem crescente.
+// A função de callback serve para determinar a ordem dos elementos.
+// Os exemplos a seguir vão explicar melhor.
 
-// Example 1. Sort documents by size, from least to greatest.
+// Exemplo 1. Vamos ordenar os documentos pelo tamanho, do menor para o maior.
 function sortBySize(documents) {
   return documents.sort((a, b) => {
-    // If a is less than b, sort b before a.
-    // If a is greater than b, sort a before b.
-    // If a is equal to b, leave the order unchanged.
+    // Se a.size for menor que b.size, coloca a antes de b.
+    // Se a.size for maior que b.size, coloca b antes de a.
+    // Se forem iguais, mantém a ordem.
     return a.size - b.size;
   });
 }
 // console.log(sortBySize(documents));
 
-// Example 2. Expand sortBySize to allow specifying sort order.
+// Exemplo 2. Podemos modificar sortBySize para permitir ordem crescente ou decrescente.
 function sortBySizeVariableOrder(documents, descending) {
   return documents.sort((a, b) => {
-    // if descending is true, sort in descending order
+    // Se descending for true, ordena em ordem decrescente.
     if (descending) {
       return b.size - a.size;
     } else {
@@ -25,31 +26,31 @@ function sortBySizeVariableOrder(documents, descending) {
     }
   });
 }
-// console.log(sortBySizeVariableOrder(documents, true)); // descending order
-// console.log(sortBySizeVariableOrder(documents, false)); // ascending order
+// console.log(sortBySizeVariableOrder(documents, true)); // ordem decrescente
+// console.log(sortBySizeVariableOrder(documents, false)); // ordem crescente
 
-// Example 3. Sort documents based on the supplied property. We've provided a default
-// value of ascending for the order parameter. Note that we need to use different
-// comparisons for different properties.
+// Exemplo 3. Agora, vamos ordenar documentos com base em uma propriedade qualquer.
+// O parâmetro 'order' padrão é "asc" (ascendente, ou crescente).
+// Note que usamos comparações diferentes dependendo do tipo da propriedade.
 function sortByProperty(documents, property, order = "asc") {
-  let comparison; // this will store the result of the comparison function
+  let comparison; // aqui vamos armazenar o resultado da comparação
   return documents.sort((a, b) => {
     if (property == "dateModified") {
-      // To compare dates, we need to convert the to Date objects.
+      // Para comparar datas, convertemos para objetos Date.
       comparison = new Date(a[property]) - new Date(b[property]);
     } else if (typeof a[property] == "string") {
-      // To sort strings properly, either convert them to lowercase first, or
-      // use the string's localCompare method.
+      // Para classificar corretamente strings, podemos usar o método localeCompare,
+      // que já trata diferenças de maiúsculas/minúsculas e acentuação.
       comparison = a[property].localeCompare(b[property], "en", {
         sensitivity: "base",
       });
     } else if (typeof a[property] == "number") {
-      // Numbers can be compared directly.
+      // Números podem ser comparados diretamente com subtração.
       comparison = a[property] - b[property];
     } else {
-      return "Invalid or unsortable property";
+      return "Propriedade inválida ou não classificável";
     }
-    // To sort in descending order, we can multiply the comparison by -1.
+    // Para classificar em ordem decrescente, podemos multiplicar a comparação por -1.
     if (order == "desc") {
       comparison *= -1;
     }
@@ -57,7 +58,7 @@ function sortByProperty(documents, property, order = "asc") {
     return comparison;
   });
 }
-// console.log(sortByProperty(documents, "name"), "desc"); // sort by name, descending
-// console.log(sortByProperty(documents, "size")); // sort by size, ascending
-// console.log(sortByProperty(documents, "dateModified")); // sort by date, ascending
-// console.log(sortByProperty(documents, "foo")); // invalid property
+// console.log(sortByProperty(documents, "name"), "desc"); // classificar por nome, em ordem decrescente
+// console.log(sortByProperty(documents, "size")); // classificar por tamanho, crescente
+// console.log(sortByProperty(documents, "dateModified")); // classificar por data, crescente
+// console.log(sortByProperty(documents, "foo")); // propriedade inválida

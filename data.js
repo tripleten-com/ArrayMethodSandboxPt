@@ -133,7 +133,7 @@ const documents = [
     },
 ];
 
-// validatedDocuments only has files that pass validation.
+// validatedDocuments possui apenas arquivos que passam na validação.
 const validatedDocuments = [
     {
         _id: "507f1f77bcf86cd799439028",

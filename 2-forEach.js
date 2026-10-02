@@ -1,5 +1,5 @@
-// In loops.js we used a for loop to print out the names of each person in the
-// people array.
+// Em loops.js usamos um loop for para imprimir os nomes de cada pessoa na
+// matriz de pessoas.
 
 const people = [
   { name: "Alice", age: 25 },
@@ -14,8 +14,8 @@ function withForLoop() {
 }
 // withForLoop();
 
-// Here is the equivalent loop using the forEach method. Note that we don't need
-// to worry about the index variable or the length of the array.
+// Aqui está o loop equivalente usando o método forEach. Observe que não precisamos
+// nos preocupar com a variável de índice ou com o comprimento do array.
 function withForEach() {
   people.forEach((person) => {
     console.log(person.name);
@@ -23,24 +23,24 @@ function withForEach() {
 }
 // withForEach();
 
-// But if necessary, we can access the index variable as the second argument of
-// the callback function.
+// Mas, se necessário, podemos acessar a variável de índice como segundo argumento da
+// função de callback.
 function forEachWithIndex() {
   people.forEach((person, i) => {
-    console.log(`index: ${i}, name: ${person.name}`);
+    console.log(`indice: ${i}, nome: ${person.name}`);
   });
 }
 // forEachWithIndex();
 
-// Passing anonymous callback functions to array methods is common, but often
-// it is preferable to use named functions. Note that logDetailedInfo usage accepts
-// the same arguments as the anonymous callbacks we've been using.
+// Passar funções de callback anônimas para métodos de array é comum, mas muitas vezes
+// é preferível usar funções nomeadas. Observe que a função logDetailedInfo aceita
+// os mesmos argumentos que os callbacks anônimos que usamos acima.
 function logDetailedInfo(personData, i) {
-  console.log(`${i + 1}. ${personData.name} is ${personData.age} years old.`);
+  console.log(`${i + 1}. ${personData.name} tem ${personData.age} anos de idade.`);
 }
 
-// We can use this function in a forEach method like this. Note that we are
-// just passing the logDetailedInfo function by its name, not calling it.
+// Podemos usar essa função com o método forEach assim. Repare que estamos
+// apenas passando o nome da função logDetailedInfo, sem chamá-la.
 function forEachWithNamedCallback() {
   people.forEach(logDetailedInfo);
 }

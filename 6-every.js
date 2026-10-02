@@ -1,14 +1,14 @@
 import { documents, validatedDocuments } from "./data.js";
 
-// The every method is basically the opposite of the some method. It returns true
-// if the callback function returns true for every item in the array.
+// O método every é basicamente o oposto do método some. Ele retorna true
+// se a função de callback retornar true para **todos** os itens do array.
 //
-// So, while we use .some() to check whether at least one item meets some criteria,
-// we use .every() to check whether _every_ item meets some criteria.
+// Ou seja, usamos .some() para verificar se **pelo menos um** item atende a um critério,
+// e usamos .every() para verificar se **todos** os itens atendem a esse critério.
 
-// Example 1. Now we need to check whether _all_ documents in a batch are valid, where
-// validity is determined by the isValid function. If they are all valid, we send a
-// message to the user and continue processing the request.
+// Exemplo 1. Agora precisamos verificar se **todos** os documentos em um lote são válidos,
+// onde a validade é determinada pela função isValid.
+// Se todos forem válidos, enviamos uma mensagem ao usuário e continuamos o processamento.
 function isValid(document) {
   const isNotTooBig = document.size <= 30000000;
   const hasNoSpaces = !document.name.includes(" ");
@@ -16,13 +16,13 @@ function isValid(document) {
 }
 
 function allAreValid(documents) {
-  // Check if every document is valid
+  // Verifica se todos os documentos são válidos
   return documents.every(isValid);
 }
 // if (allAreValid(documents)) {
-//   // Shouldn't print anything
-//   console.log("Documents validated: processing request...");
+//   // Não deve imprimir nada
+//   console.log("Documentos validados: processando solicitação...");
 // }
 // if (allAreValid(validatedDocuments)) {
-//   console.log("Documents validated: processing request...");
+//   console.log("Documentos validados: processando solicitação...");
 // }

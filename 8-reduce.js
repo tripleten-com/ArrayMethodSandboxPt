@@ -1,106 +1,105 @@
 import { documents } from "./data.js";
 
-// The reduce method is the first that accepts a callback with a different signature.
-// An example will help make the differences clear.
+// O método reduce é o primeiro que usa uma função de callback com uma assinatura diferente.
+// Um exemplo ajudará a entender essas diferenças.
 
-// Example 1. Get a sum of the elements in the numbers array. We can use the reduce
-// method to "reduce" the array into a single value.
+// Exemplo 1. Vamos obter a soma dos elementos em um array de números usando reduce.
+// Podemos "reduzir" o array a um único valor.
 const numbers = [1, 2, 3, 4, 5];
 const sum = numbers.reduce(function (accumulator, currentValue) {
   return accumulator + currentValue;
 });
 // console.log(sum);
 
-// The callback accepts two arguments: the accumulator and the current value. In the
-// first iteration, the accumulator starts with the value of the first element in the
-// array; in the second iteration, the accumulator receives the value that the callback
-// returns; and so on.
+// A função de callback recebe dois argumentos: o acumulador e o valor atual.
+// Na primeira iteração, o acumulador começa com o valor do primeiro elemento do array;
+// na segunda iteração, ele recebe o valor retornado pelo callback da iteração anterior;
+// e assim por diante.
 
-// Run the logWithDetails function to what happens in each iteration.
+// Execute a função logWithDetails para ver o que acontece em cada iteração.
 function logWithDetails() {
   const sum = numbers.reduce(function (accumulator, currentValue) {
-    console.log("Start iteration");
-    console.log("accumulator is", accumulator);
-    console.log("currentValue is", currentValue);
-    console.log("End iteration\n");
+    console.log("Início da iteração");
+    console.log("acumulador é", acumulador);
+    console.log("valor atual é", currentValue);
+    console.log("Fim da iteração\n");
     return accumulator + currentValue;
   });
-  console.log("sum is", sum);
+  console.log("A soma é", sum);
 }
 // logWithDetails()
 
-// Example 2. By default, the accumulator starts with the first element in the array.
-// But this can be changed by passing a second argument to the reduce method. Here's a
-// silly example to show the mechanics.
+// Exemplo 2. Por padrão, o acumulador começa com o primeiro elemento do array.
+// Mas podemos mudar isso passando um segundo argumento ao reduce.
+// Aqui está um exemplo simples para mostrar como funciona.
 const letters = ["A", "B", "C"];
 const lyrics = letters.reduce(function (acc, curr) {
   return acc + curr;
-}, "Now I know my "); // In the first iteration, the accumulator is "Now I know my "
-// console.log(lyrics + "'s, next time won't you sing with me?")
+}, "Agora eu sei meu  "); // O acumulador inicia como "Agora eu sei meu "
+// console.log(lyrics + "'s, da próxima vez você não vai cantar comigo?")
 
-// Example 3. We can access the index of the current element. If no initial value is
-// specified, then in the first iteration the index of the current element is 1.
+// Exemplo 3. Podemos acessar o índice do elemento atual.
+// Se nenhum valor inicial for especificado, o índice começa em 1 na primeira iteração.
 function withNoInitialValue() {
   const sum = numbers.reduce(function (acc, curr, i) {
-    console.log("Start iteration");
-    console.log("accumulator is", acc);
-    console.log("current value is", curr);
-    console.log("the index of the current value is", i);
-    console.log("End iteration\n");
+    console.log("Início da iteração");
+    console.log("acumulador é", acc);
+    console.log("o valor atual é", curr);
+    console.log("o índice do valor atual é", i);
+    console.log("Fim da iteração\n");
     return acc + curr;
   });
-  console.log("sum is", sum);
+  console.log("A soma é", sum);
 }
 // withNoInitialValue();
 
-// But if we pass an initial value, then the index of the current element in the first
-// iteration is 0.
+// Mas se passarmos um valor inicial, o índice começa em 0 na primeira iteração.
 function withInitialValue() {
   const sum = numbers.reduce(function (acc, curr, i) {
-    console.log("Start iteration");
-    console.log("accumulator is", acc);
-    console.log("current value is", curr);
-    console.log("the index of the current value is", i);
-    console.log("End iteration\n");
+    console.log("Início da iteração");
+    console.log("acumulador é", acc);
+    console.log("o valor atual é", curr);
+    console.log("o índice do valor atual é", i);
+    console.log("Fim da iteração\n");
     return acc + curr;
-  }, 100); // specifying an initial value of 100
-  console.log("sum is", sum);
+  }, 100); // valor inicial definido como 100
+  console.log("A soma é", sum);
 }
 // withInitialValue();
 
-// Example 3. We need to get counts of files based on their type. The results must be
-// provided in an object with keys corresponding to the object type.
+// Exemplo 4. Podemos contar arquivos por tipo.
+// O resultado é um objeto onde as chaves são os tipos e os valores são as contagens.
 function countFilesByType(documents) {
   const counts = documents.reduce(function (acc, curr) {
     const type = curr.type;
     if (acc[type]) {
-      // if the type is in the object, add one to its count
+      // se o tipo já existe, incrementa a contagem
       acc[type] = acc[type] + 1;
     } else {
-      // otherwise add the type with a count of 1
+      // senão, inicia a contagem em 1
       acc[type] = 1;
     }
     return acc;
-  }, {}); // initial value is an empty object where the counts will be tracked
+  }, {}); // valor inicial é um objeto vazio para armazenar as contagens
   return counts;
 }
 // console.log(countFilesByType(documents));
 
-// Example 4. We need to print some nice output to our user: a markdown table with
-// two columns listing the names and sizes of their the documents. At the top of the
-// table their should be a header row. Expected output will look like this
+// Exemplo 4. Vamos imprimir uma saída interessante para o usuário: uma tabela em markdown
+// com duas colunas listando os nomes e tamanhos dos documentos. No topo da tabela
+// deve haver uma linha de cabeçalho. A saída esperada será parecida com esta:
 //
-// | Name      | Size |
-// | --------- | ---- |
-// | Graph.png | 1100 |
-// | audio.mp3 | 3000 |
-// 
-// Whitespace doesn't matter, that will be handled by the markdown renderer.
+// | Nome      | Tamanho |
+// | --------- | ------- |
+// | Graph.png |   1100  |
+// | audio.mp3 |   3000  |
+//
+// O espaço em branco não importa, pois o renderizador markdown vai ajustar isso automaticamente.
 function printTable(documents) {
-  const head = "| Name | Size |\n" + "| ---- | ---- |\n";
+  const head = "| Nome   | Tamanho |\n" + "| ---- | ---- |\n";
   const table = documents.reduce(function (acc, curr) {
-    return acc + `| ${curr.name} | ${curr.size} |\n`; // add a row to the table
-  }, head); // initial value is the top two rows of the table
+    return acc + `| ${curr.name} | ${curr.size} |\n`; // adiciona uma linha à tabela
+  }, head); // o valor inicial são as duas primeiras linhas da tabela
   return table;
 }
 console.log(printTable(documents));

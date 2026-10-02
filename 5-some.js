@@ -1,33 +1,34 @@
 import { documents, validatedDocuments } from "./data.js";
 
-// The some method accepts a callback function that gets called on each element.
-// This callback should return a boolean value. If the callback returns true for
-// any element, the some method returns true. Otherwise, it returns false.
+// O método some recebe uma função de callback que é executada para cada elemento.
+// Essa função deve retornar um valor booleano. Se ela retornar true para
+// qualquer elemento, o método some retorna true. Caso contrário, retorna false.
 
-// Example 1. Spaces are not supported in filepaths in a number of contexts. If a
-// batch of documents contains a space in its name, a warning message should be
-// sent.
+// Exemplo 1. Espaços não são permitidos em caminhos de arquivo em vários contextos.
+// Se algum dos documentos tiver um espaço no nome, uma mensagem de aviso
+// deve ser exibida.
+
 function containsSpaces(documents) {
   return documents.some(function (document) {
     return document.name.includes(" ");
   });
 }
 // if (containsSpaces(documents)) {
-//   console.log("One or more invalid file names");
+//   console.log("Um ou mais nomes de arquivo inválidos");
 // }
 // if (containsSpaces(validatedDocuments)) {
-//   console.log("One or more invalid file names"); // Should not print anything
+//   console.log("Um ou mais nomes de arquivo inválidos"); // Não deve imprimir nada
 // }
 
-// Example 2. We need to send a user a message if one or more files is too large.
+// Exemplo 2. Precisamos exibir uma mensagem ao usuário se um ou mais arquivos forem muito grandes.
 function isFileTooLarge(documents) {
   return documents.some(function (document) {
     return document.size > 30000000;
   });
 }
 // if (isFileTooLarge(documents)) {
-//   console.log("One or more files is >30MB");
+//   console.log("Um ou mais arquivos têm mais de 30 MB");
 // }
 // if (isFileTooLarge(validatedDocuments)) {
-//   console.log("One or more files is >30MB"); // Should not print anything
+//   console.log("Um ou mais arquivos têm mais de 30 MB"); // Não deve imprimir nada
 // }

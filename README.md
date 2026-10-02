@@ -1,23 +1,23 @@
-# TripleTen Array Method Sandbox
+# Sandbox do método TripleTen Array
 
-This repl contains a collection of examples of using JavaScript array methods. Most JS files correspond to a specific array method. The exception is `loops.js` which provides a summary of using `for` loops to iterate over an array.
+Este repl reúne uma coleção de exemplos de uso dos métodos de array do JavaScript. A maioria dos arquivos JS corresponde a um método específico. A única exceção é o `1-loops.js`, que traz um resumo do uso de loops `for` para iterar sobre um array.
 
-We won't be explaining the syntax in detail, we assume you are already familiar with it.
+Não entraremos em detalhes sobre a sintaxe, pois partimos do princípio de que você já está familiarizado com ela.
 
-## Running the examples
+## **Executando os exemplos**
 
-You can run the JavaScript files in the terminal with the command `node filename.js`. To access the terminal, use the keyboard shortcut **Ctrl+`**, or by selecting **Left Sidebar > All Tools > Shells**.
+Você pode executar os arquivos JavaScript no terminal com o comando `node filename.js`. Para abrir o terminal, use o atalho **Ctrl+`**, ou vá em **Barra lateral esquerda > Todas as ferramentas > Shells**.
 
-Since each file contains multiple examples, we have wrapped each example in a function. To see the output, call the function and run `node filename.js` in the terminal.
+Como cada arquivo contém vários exemplos, encapsulamos cada um deles em uma função. Para ver a saída, basta chamar a função e rodar o comando `node filename.js` no terminal.
 
-## The data
+## **Os dados**
 
-Many examples rely on data found in `data.js`: an array of objects storing document metadata. 
+Muitos dos exemplos usam dados do arquivo `data.js`: uma matriz de objetos que armazenam metadados de documentos.
 
-This data is imported into each of the files like so:
+Esses dados são importados nos arquivos da seguinte forma:
 
 ```js
 import { documents } from "./data.js"
 ```
 
-This essentially creates a variable called `documents` in that file that stores the array from `data.js`.
+Isso basicamente cria uma variável chamada `documents` naquele arquivo, que contém o array exportado de `data.js`.
